@@ -1,0 +1,18 @@
+package com.briup.apps.ej.service;
+
+import com.briup.apps.ej.bean.Order;
+
+import java.util.List;
+
+public interface IOrderService {
+    List<Order> query(Order order);
+
+    List<Order> findAll();
+
+    Order findById(long id);
+
+    void saveOrUpdate(Order order) throws Exception ;
+
+    void deleteById(long id) throws Exception ;
+
+}
