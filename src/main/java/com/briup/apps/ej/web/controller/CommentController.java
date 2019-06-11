@@ -1,7 +1,6 @@
 package com.briup.apps.ej.web.controller;
-
-import com.briup.apps.ej.bean.Order;
-import com.briup.apps.ej.service.IOrderService;
+import com.briup.apps.ej.bean.Comment;
+import com.briup.apps.ej.service.ICommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
@@ -15,22 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/comment")
+public class CommentController {
+    /**
+     *
+     */
     @Autowired
-    private IOrderService orderService;
+    public ICommentService commentService;
 
-   // @ApiOperation("模糊查询")
-    //@GetMapping("query")
-    //public Message query(Order order){
-      //  List<Order> list = orderService.query(order);
-      //  return MessageUtil.success("success",list);
-    //}
 
 
     @GetMapping("findAll")
     public Message findAll(){
-        List<Order> list = orderService.findAll();
+        List<Comment> list = commentService.findAll();
         return MessageUtil.success("success",list);
     }
 
@@ -39,15 +35,15 @@ public class OrderController {
     public Message findById(
             @ApiParam(value = "主键",required = true)
             @RequestParam(value = "id") long id){
-        Order order = orderService.findById(id);
-        return MessageUtil.success("success",order);
+        Comment comment = commentService.findById(id);
+        return MessageUtil.success("success",comment);
     }
 
-    @ApiOperation("保存或更新订单信息")
+    @ApiOperation("保存或更新用户信息")
     @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Order order){
+    public Message saveOrUpdate(Comment comment){
         try {
-            orderService.saveOrUpdate(order);
+            commentService.saveOrUpdate(comment);
             return MessageUtil.success("保存成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,11 +51,11 @@ public class OrderController {
         }
     }
 
-    @ApiOperation("通过id删除订单信息")
+    @ApiOperation("通过id删除用户信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
-            orderService.deleteById(id);
+            commentService.deleteById(id);
             return MessageUtil.success("删除成功!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,3 +64,4 @@ public class OrderController {
     }
 
 }
+
