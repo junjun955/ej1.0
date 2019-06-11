@@ -15,56 +15,35 @@ public class CustomerServiceImpl implements ICustomerService {
     private CustomerMapper customerMapper;
 
     @Override
-    public List<Customer> query(Customer customer) {
-        // 创建空模板
-        CustomerExample example = new CustomerExample();
-        // 在模板中添加条件
-        if(customer.getRealname()!=null){
-            example
-                    .createCriteria()
-                    .andRealnameLike("%"+customer.getRealname()+"%");
-        }
-        if(customer.getTelephone()!=null){
-            example
-                    .createCriteria()
-                    .andTelephoneLike("%"+customer.getTelephone()+"%");
-        }
-
-        return customerMapper.selectByExample(example);
-    }
-
-    @Override
     public List<Customer> findAll() {
         CustomerExample example = new CustomerExample();
         return customerMapper.selectByExample(example);
     }
 
     @Override
-    public Customer findById(long id) {
-        // 调用mapper层代码完成查询操作
-        return customerMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
     public void saveOrUpdate(Customer customer) throws Exception {
-        if(customer.getId() == null){
-            // 初始化属性
+        if(customer.getId()!=null){
+            customerMapper.updateByPrimaryKey(customer);
+        } else {
             customer.setStatus("正常");
             customerMapper.insert(customer);
-        } else {
-            customerMapper.updateByPrimaryKey(customer);
         }
     }
+
 
     @Override
     public void deleteById(long id) throws Exception {
         Customer customer = customerMapper.selectByPrimaryKey(id);
         if(customer == null){
-            throw new Exception("要删除的用户不存在");
-        } else {
+            throw new Exception("要删除的用户信息不存在");
+        }
+        customerMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
             customerMapper.deleteByPrimaryKey(id);
         }
     }
 }
-
-
