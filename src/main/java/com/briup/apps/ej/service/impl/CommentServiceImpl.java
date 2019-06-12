@@ -1,4 +1,5 @@
 package com.briup.apps.ej.service.impl;
+import com.briup.apps.ej.bean.AddressExample;
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.CommentExample;
 import com.briup.apps.ej.dao.CommentMapper;
@@ -16,7 +17,25 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public List<Comment> query(Comment comment) {
-        return null;
+        CommentExample example=new CommentExample();
+        //  在模板中添加条件
+        if(comment.getContent()!=null){
+            example
+                    .createCriteria()
+                    .andContentLike("%"+comment.getContent()+"%");
+        }
+        if(comment.getCommentTime()!=null){
+            example
+                    .createCriteria()
+                    .andCommentTimeLike("%"+comment.getCommentTime()+"%");
+        }
+        if(comment.getOrderId()!=null){
+            example
+                    .createCriteria()
+                    .andOrderId("%"+comment.getOrderId()+"%");
+        }
+
+        return commentMapper.selectByExample(example);
     }
 
     @Override
@@ -50,5 +69,10 @@ public class CommentServiceImpl implements ICommentService {
         } else {
             commentMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    @Override
+    public void batchDelete(long[] ids) {
+
     }
 }
