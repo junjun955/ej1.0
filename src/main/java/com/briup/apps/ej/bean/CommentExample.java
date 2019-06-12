@@ -456,6 +456,12 @@ public class CommentExample {
         protected Criteria() {
             super();
         }
+
+        public void andCommentTimeLike(String s) {
+        }
+
+        public void andOrderId(String s) {
+        }
     }
 
     /**

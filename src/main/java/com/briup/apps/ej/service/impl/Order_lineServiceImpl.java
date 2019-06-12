@@ -52,4 +52,10 @@ public class Order_lineServiceImpl implements IOrder_lineService{
             order_lineMapper.deleteByPrimaryKey(id);
         }
     }
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            order_lineMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

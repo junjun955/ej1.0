@@ -73,5 +73,10 @@ public class AddressServiceImpl implements IAddressService {
             addressMapper.deleteByPrimaryKey(id);
         }
     }
-
+    @Override
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            addressMapper.deleteByPrimaryKey(id);
+        }
+    }
 }
