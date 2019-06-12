@@ -7,13 +7,12 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
-
+@Validated
 @RestController
 @RequestMapping("/order_line")
 public class Order_lineController {
@@ -36,7 +35,7 @@ public class Order_lineController {
     }
 
     @ApiOperation("保存或更新订单信息")
-    @GetMapping("saveOrUpdate")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(Order_line order_line){
         try {
             order_lineService.saveOrUpdate(order_line);
@@ -56,6 +55,12 @@ public class Order_lineController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+    @PostMapping("batchDelete")
+    @ApiOperation("批量删除顾客信息")
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+        order_lineService.batchDelete(ids);
+        return MessageUtil.success("批量删除成功");
     }
 
 }
