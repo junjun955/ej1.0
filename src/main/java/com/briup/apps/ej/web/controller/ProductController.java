@@ -1,5 +1,6 @@
 package com.briup.apps.ej.web.controller;
 
+import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
@@ -26,45 +27,31 @@ public class ProductController {
     public IProductService productService;
 
 
-
     @GetMapping("findAll")
+    @ApiOperation("查询所有顾客评论信息")
     public Message findAll(){
         List<Product> list = productService.findAll();
         return MessageUtil.success("success",list);
     }
 
-
-
-    @ApiOperation("保存或更新用户信息")
-    @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Product product){
-        try {
-            productService.saveOrUpdate(product);
-            return MessageUtil.success("保存成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+    @PostMapping("saveOrUpdate")
+    @ApiOperation("保存或者更新顾客信息")
+    public Message saveOrUpdate(Product product) throws Exception{
+        productService.saveOrUpdate(product);
+        return MessageUtil.success("操作成功");
     }
 
-    @ApiOperation("通过id删除用户信息")
     @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
-        try {
-            productService.deleteById(id);
-            return MessageUtil.success("删除成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+    @ApiOperation("通过ID删除")
+    public Message deleteById(Long id) throws Exception{
+        productService.deleteById(id);
+        return MessageUtil.success("删除成功");
     }
+
     @PostMapping("batchDelete")
     @ApiOperation("批量删除顾客信息")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception {
+    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
         productService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }
-
 }
-
-

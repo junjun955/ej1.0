@@ -1,10 +1,10 @@
 package com.briup.apps.ej.service.impl;
 
-import com.briup.apps.ej.bean.Product;
-import com.briup.apps.ej.bean.ProductExample;
-import com.briup.apps.ej.dao.CommentMapper;
+import com.briup.apps.ej.bean.*;
+
 import com.briup.apps.ej.dao.ProductMapper;
 import com.briup.apps.ej.service.IProductService;
+import com.briup.apps.ej.web.controller.ProductController;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,21 +12,53 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 @Service
-@RestController
-@RequestMapping
-public class ProductServiceImpl implements IProductService {
+
+public  class ProductServiceImpl implements IProductService {
     @Resource
     private ProductMapper productMapper;
 
     @Override
     public List<Product> query(Product product) {
-        return null;
+        //创建空模板
+        ProductExample example=new ProductExample();
+        //  在模板中添加条件
+        if(product.getName()!=null){
+            example
+                    .createCriteria()
+                    .andNameLike("%"+product.getName()+"%");
+        }
+        if(product.getDescription()!=null){
+            example
+                    .createCriteria()
+                    .andDescriptionLike("%"+product.getDescription()+"%");
+        }
+        if(product.getStatus()!=null){
+            example
+                    .createCriteria()
+                    .andStatusLike("%"+product.getName()+"%");
+        }
+        if(product.getName()!=null){
+            example
+                    .createCriteria()
+                    .andNameLike("%"+product.getName()+"%");
+        }
+        if(product.getPhoto()!=null){
+            example
+                    .createCriteria()
+                    .andPhotoLike("%"+product.getName()+"%");
+        }
+
+        return productMapper.selectByExample(example);
+
     }
+
+
     @Override
     public List<Product> findAll() {
         ProductExample example = new ProductExample();
         return productMapper.selectByExample(example);
     }
+
     @Override
     public Product findById(long id) {
         // 调用mapper层代码完成查询操作
@@ -34,13 +66,12 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void saveOrUpdate(Product product) {
-        if(product.getId() == null){
-            // 初始化属性
-            //order.setStatus("正常");
-            productMapper.insert(product);
-        } else {
+    public void saveOrUpdate(Product product) throws Exception {
+        if(product.getId()!=null){
             productMapper.updateByPrimaryKey(product);
+        } else {
+            //comment.setStatus("正常");
+            productMapper.insert(product);
         }
     }
 
