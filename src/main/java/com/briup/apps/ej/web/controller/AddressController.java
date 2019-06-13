@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+
 @Validated
 @RestController
 @RequestMapping("/address")
@@ -40,32 +42,22 @@ public class AddressController {
         return MessageUtil.success("success",address);
     }
     @PostMapping("saveOrUpdate")
-    @ApiOperation("保存或更新地址信息")
-    public Message savaOrUpate(Address address){
-        try{
-            addressService.savaOrUpdate(address);
-            return MessageUtil.success("保存成功!");
-        }catch(Exception e){
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+    @ApiOperation("保存或者更新顾客信息")
+    public Message saveOrUpdate(@Valid @ModelAttribute Address address) throws Exception{
+        addressService.saveOrUpdate(address);
+        return MessageUtil.success("操作成功");
     }
 
-    @ApiOperation("通过id删除地址信息")
     @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
-        try {
-            addressService.deleteById(id);
-            return MessageUtil.success("删除成功!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+    @ApiOperation("通过ID删除")
+    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception{
+       addressService.deleteById(id);
+        return MessageUtil.success("删除成功");
     }
 
     @PostMapping("batchDelete")
     @ApiOperation("批量删除顾客信息")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+    public Message batchDelete(long[] ids) throws Exception{
         addressService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
     }

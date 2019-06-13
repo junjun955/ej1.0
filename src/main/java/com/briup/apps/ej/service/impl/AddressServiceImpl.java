@@ -53,13 +53,14 @@ public class AddressServiceImpl implements IAddressService {
     }
 
     @Override
-    public void savaOrUpdate(Address address){
-        if(address.getId()==null){
+    public void saveOrUpdate(Address address)throws Exception{
+        if(address.getId()!=null){
             // 初始化属性
             //user.setStatus("正常");
-            addressMapper.insert(address);
-        }else {
             addressMapper.updateByPrimaryKey(address);
+
+        }else {
+            addressMapper.insert(address);
         }
 
     }
