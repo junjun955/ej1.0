@@ -53,7 +53,7 @@ public class AddressServiceImpl implements IAddressService {
     }
 
     @Override
-    public void savaOrUpdate(Address address){
+    public void saveOrUpdate(Address address){
         if(address.getId()==null){
             // 初始化属性
             //user.setStatus("正常");
