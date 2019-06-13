@@ -30,7 +30,7 @@ public class CustomerController {
 
     @PostMapping("saveOrUpdate")
     @ApiOperation("保存或者更新顾客信息")
-    public Message saveOrUpdate(Customer customer) throws Exception{
+    public Message saveOrUpdate(@Valid @ModelAttribute Customer customer) throws Exception{
         customerService.saveOrUpdate(customer);
         return MessageUtil.success("操作成功");
     }
