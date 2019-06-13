@@ -41,9 +41,9 @@ public class AddressController {
     }
     @PostMapping("saveOrUpdate")
     @ApiOperation("保存或更新地址信息")
-    public Message savaOrUpate(Address address){
+    public Message saveOrUpate(Address address){
         try{
-            addressService.savaOrUpdate(address);
+            addressService.saveOrUpdate(address);
             return MessageUtil.success("保存成功!");
         }catch(Exception e){
             e.printStackTrace();

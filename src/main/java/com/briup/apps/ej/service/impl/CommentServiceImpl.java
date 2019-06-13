@@ -1,5 +1,4 @@
 package com.briup.apps.ej.service.impl;
-import com.briup.apps.ej.bean.AddressExample;
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.CommentExample;
 import com.briup.apps.ej.dao.CommentMapper;
@@ -17,6 +16,7 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public List<Comment> query(Comment comment) {
+        //创建空模板
         CommentExample example=new CommentExample();
         //  在模板中添加条件
         if(comment.getContent()!=null){
@@ -72,7 +72,9 @@ public class CommentServiceImpl implements ICommentService {
     }
 
     @Override
-    public void batchDelete(long[] ids) {
-
+    public void batchDelete(long[] ids) throws Exception {
+        for(long id :ids){
+            commentMapper.deleteByPrimaryKey(id);
+        }
     }
 }
