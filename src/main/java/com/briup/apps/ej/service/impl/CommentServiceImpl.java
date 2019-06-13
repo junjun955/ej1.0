@@ -52,12 +52,11 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public void saveOrUpdate(Comment comment) throws Exception {
-        if(comment.getId() == null){
-            // 初始化属性
+        if(comment.getId()!=null){
+            commentMapper.updateByPrimaryKey(comment);
+        } else {
             //comment.setStatus("正常");
             commentMapper.insert(comment);
-        } else {
-            commentMapper.updateByPrimaryKey(comment);
         }
     }
 
