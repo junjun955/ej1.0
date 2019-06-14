@@ -24,7 +24,7 @@ public class OrderServiceImpl implements IOrderService {
     @Resource
     private OrderExtendMapper orderExtendMapper;
     @Resource
-    private Order_lineMapper orderLineMapper;
+    private Order_lineMapper order_lineMapper;
 
     @Override
     public List<OrderVM> queryBasic(Long customerId, Long waiterId) {
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements IOrderService {
         for(Order_line ol : list){
             // 维护订单项与订单之间的关系
             ol.setOrderId(o.getId());
-            orderLineMapper.insert(ol);
+            order_lineMapper.insert(ol);
         }
     }
 
