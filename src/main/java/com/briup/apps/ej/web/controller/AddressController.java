@@ -39,7 +39,7 @@ public class AddressController {
         return MessageUtil.success("success",address);
     }
     @PostMapping("saveOrUpdate")
-    @ApiOperation("保存或者更新顾客信息")
+    @ApiOperation("保存或者更新地址信息")
     public Message saveOrUpdate(@Valid @ModelAttribute Address address) throws Exception{
         addressService.saveOrUpdate(address);
         return MessageUtil.success("操作成功");
@@ -53,7 +53,7 @@ public class AddressController {
     }
 
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除顾客信息")
+    @ApiOperation("批量删除地址信息")
     public Message batchDelete(long[] ids) throws Exception{
         addressService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");

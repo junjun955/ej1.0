@@ -1,5 +1,10 @@
 package com.briup.apps.ej.bean;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotBlank;
+
+@ApiModel("分类模型")
 public class Category {
     /**
      *
@@ -17,6 +22,8 @@ public class Category {
      *
      * @mbg.generated Mon Jun 10 11:19:39 CST 2019
      */
+    @ApiParam(value = "服务名称")
+    @NotBlank(message = "服务名称不能为空")
     private String name;
 
     /**

@@ -38,16 +38,11 @@ public class CategoryController {
         return MessageUtil.success("success",category);
     }
 
-    @ApiOperation("保存或更新分类信息")
-    @PostMapping("savaOrUpate")
-    public Message savaOrUpate(Category category){
-        try{
-            categoryService.savaOrUpdate(category);
-            return MessageUtil.success("保存成功!");
-        }catch(Exception e){
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+    @PostMapping("saveOrUpdate")
+    @ApiOperation("保存或者更新分类信息")
+    public Message saveOrUpdate(@Valid @ModelAttribute Category category) throws Exception{
+        categoryService.savaOrUpdate(category);
+        return MessageUtil.success("操作成功");
     }
 
     @ApiOperation("通过id删除分类信息")
@@ -63,7 +58,7 @@ public class CategoryController {
     }
 
     @PostMapping("batchDelete")
-    @ApiOperation("批量删除顾客信息")
+    @ApiOperation("批量删除分类信息")
     public Message batchDelete(long[] ids) throws Exception{
         categoryService.batchDelete(ids);
         return MessageUtil.success("批量删除成功");
