@@ -70,17 +70,6 @@ public class WaiterController {
         }
     }
 
-    @ApiOperation("插入数据")
-    @GetMapping("insert")
-    public Message insert(Waiter waiter){
-        try {
-            waiterService.insert(waiter);
-            return MessageUtil.success("插入成功");
-        }catch (Exception e){
-            e.printStackTrace();
-            return  MessageUtil.error(e.getMessage());
-        }
-    }
     @ApiOperation("批量删除")
     @PostMapping("/batchDelete")
     public Message batchDelete(@NotNull(message = "id不能为空")long[] ids) throws Exception{
