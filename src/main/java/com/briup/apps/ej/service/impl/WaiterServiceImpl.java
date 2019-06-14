@@ -21,10 +21,35 @@ public class WaiterServiceImpl implements IWaiterService {
         // 创建空模板
         WaiterExample example = new WaiterExample();
         // 在模板中添加条件
+        if (waiter.getRealname() != null) {
+            example
+                    .createCriteria()
+                    .andRealnameLike("%" + waiter.getRealname() + "%");
+        }
         if (waiter.getTelephone() != null) {
             example
                     .createCriteria()
                     .andTelephoneLike("%" + waiter.getTelephone() + "%");
+        }
+        if (waiter.getRealname() != null) {
+            example
+                    .createCriteria()
+                    .andRealnameLike("%" + waiter.getRealname() + "%");
+        }
+        if (waiter.getIdcard() != null) {
+            example
+                    .createCriteria()
+                    .andIdcardLike("%" + waiter.getIdcard() + "%");
+        }
+        if (waiter.getStatus() != null) {
+            example
+                    .createCriteria()
+                    .andStatusLike("%" + waiter.getStatus() + "%");
+        }
+        if (waiter.getPhoto() != null) {
+            example
+                    .createCriteria()
+                    .andPhotoLike("%" + waiter.getPhoto() + "%");
         }
 
         return waiterMapper.selectByExample(example);
@@ -48,17 +73,6 @@ public class WaiterServiceImpl implements IWaiterService {
             waiterMapper.insert(waiter);
         } else {
             waiterMapper.updateByPrimaryKey(waiter);
-        }
-    }
-
-    @Override
-    public void insert(Waiter waiter) throws Exception {
-        if (waiter.getId() == null) {
-            // 初始化属性
-            waiter.setStatus("正常");
-            waiterMapper.insert(waiter);
-        } else {
-            waiterMapper.insert(waiter);
         }
     }
 

@@ -14,9 +14,6 @@ public interface IWaiterService {
 
     void saveOrUpdate(Waiter waiter) throws Exception ;
 
-    void insert(Waiter waiter) throws  Exception;
-
-
     void batchDelete(long[] ids) throws  Exception;
 
     void deleteById(long id) throws Exception ;
