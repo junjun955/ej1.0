@@ -2,7 +2,9 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.AddressExample;
+import com.briup.apps.ej.bean.extend.AddressExtend;
 import com.briup.apps.ej.dao.AddressMapper;
+import com.briup.apps.ej.dao.extend.AddressExtendMapper;
 import com.briup.apps.ej.service.IAddressService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -12,6 +14,13 @@ import java.util.List;
 public class AddressServiceImpl implements IAddressService {
     @Resource
     private AddressMapper addressMapper;
+    @Resource
+    private AddressExtendMapper addressExtendMapper;
+
+    @Override
+    public List<AddressExtend> query(Long customerId) {
+        return addressExtendMapper.query(customerId);
+    }
     @Override
     public List<Address> query(Address address) {
         //创建空模板

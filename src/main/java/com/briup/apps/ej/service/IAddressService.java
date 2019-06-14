@@ -1,10 +1,13 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Address;
+import com.briup.apps.ej.bean.extend.AddressExtend;
 
 import java.util.List;
 
 public interface IAddressService {
+    List<AddressExtend> query(Long customerId);
+
     List<Address> query(Address address);
 
     List<Address>findAll();

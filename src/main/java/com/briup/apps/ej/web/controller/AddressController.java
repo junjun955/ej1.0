@@ -1,5 +1,6 @@
 package com.briup.apps.ej.web.controller;
 import com.briup.apps.ej.bean.Address;
+import com.briup.apps.ej.bean.extend.AddressExtend;
 import com.briup.apps.ej.service.IAddressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -20,13 +21,18 @@ public class AddressController {
     @Autowired
     private IAddressService addressService;
 
-
-    @ApiOperation("模糊查询")
     @GetMapping("query")
-    public Message query(Address address){
-        List<Address> list = addressService.query(address);
+    @ApiOperation("查询订单信息，并且订单级联关键的属性")
+    public Message query(Long customerId){
+        List<AddressExtend> list = addressService.query(customerId);
         return MessageUtil.success("success",list);
     }
+   // @ApiOperation("模糊查询")
+   // @GetMapping("query")
+   // public Message query(Address address){
+    //    List<Address> list = addressService.query(address);
+    //    return MessageUtil.success("success",list);
+    //}
 
     @GetMapping("findAll") public Message findAll(){
         List<Address> list = addressService.findAll();
