@@ -46,8 +46,8 @@ public class WaiterController {
         return MessageUtil.success("success",waiter);
     }
 
-    @ApiOperation("保存或更新产品信息")
-    @GetMapping("saveOrUpdate")
+    @ApiOperation("保存或更新用户信息")
+    @PostMapping("saveOrUpdate")
     public Message saveOrUpdate(Waiter waiter){
         try {
             waiterService.saveOrUpdate(waiter);
@@ -58,7 +58,7 @@ public class WaiterController {
         }
     }
 
-    @ApiOperation("通过id删除产品信息")
+    @ApiOperation("通过id删除用户信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") long id){
         try {
