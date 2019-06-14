@@ -1,5 +1,7 @@
 package com.briup.apps.ej.web.controller;
 import com.briup.apps.ej.bean.Comment;
+import com.briup.apps.ej.bean.extend.CommentExtend;
+import com.briup.apps.ej.bean.vm.CommentVM;
 import com.briup.apps.ej.service.ICommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -20,6 +22,19 @@ public class CommentController {
     @Autowired
     public ICommentService commentService;
 
+    @GetMapping("queryBasic")
+    @ApiOperation("查询评论信息，返回列表数据")
+    public Message queryBasic(Long commentId,Long commentTime){
+        List<CommentVM> list = commentService.queryBasic(commentId,commentTime);
+        return MessageUtil.success("success",list);
+    }
+
+    @GetMapping("query")
+    @ApiOperation("查询评论信息，并且评论级联关键的属性")
+    public Message query(Long commentId,Long commentTime){
+        List<CommentExtend> list = commentService.query(commentId,commentTime);
+        return MessageUtil.success("success",list);
+    }
 
 
     @GetMapping("findAll")
