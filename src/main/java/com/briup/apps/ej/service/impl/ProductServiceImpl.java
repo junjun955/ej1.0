@@ -1,13 +1,12 @@
 package com.briup.apps.ej.service.impl;
 
-import com.briup.apps.ej.bean.*;
-
+import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.ProductExample;
 import com.briup.apps.ej.dao.ProductMapper;
 import com.briup.apps.ej.service.IProductService;
-import com.briup.apps.ej.web.controller.ProductController;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,20 +31,26 @@ public  class ProductServiceImpl implements IProductService {
                     .createCriteria()
                     .andDescriptionLike("%"+product.getDescription()+"%");
         }
+        if(product.getPrice()!=null){
+            example
+                    .createCriteria()
+                    .andPriceIn("%"+product.getPrice()+"%");
+        }
         if(product.getStatus()!=null){
             example
                     .createCriteria()
-                    .andStatusLike("%"+product.getName()+"%");
+                    .andStatusLike("%"+product.getStatus()+"%");
         }
-        if(product.getName()!=null){
-            example
-                    .createCriteria()
-                    .andNameLike("%"+product.getName()+"%");
-        }
+
         if(product.getPhoto()!=null){
             example
                     .createCriteria()
-                    .andPhotoLike("%"+product.getName()+"%");
+                    .andPhotoLike("%"+product.getPhoto()+"%");
+        }
+        if(product.getCategoryId()!=null){
+            example
+                    .createCriteria()
+                    .andCategoryIdIn("%"+product.getCategoryId()+"%");
         }
 
         return productMapper.selectByExample(example);

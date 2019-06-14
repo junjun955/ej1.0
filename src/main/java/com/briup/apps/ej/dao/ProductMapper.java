@@ -94,5 +94,5 @@ public interface ProductMapper {
      */
     int updateByPrimaryKey(Product record);
 
-    void batchdeleteByPrimaryKey(long id);
+
 }

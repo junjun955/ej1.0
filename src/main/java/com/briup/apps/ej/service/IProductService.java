@@ -10,13 +10,16 @@ public interface IProductService {
 
      List<Product> query(Product product);
 
+    Product findById( long id);
+
+
     void saveOrUpdate(Product product) throws Exception;
 
     void deleteById(long id) throws Exception ;
 
     void batchDelete(long[] ids) throws Exception;
 
-     Product findById( long id);
+
 
 }
 
