@@ -5,7 +5,6 @@ import com.briup.apps.ej.bean.AddressExample;
 import com.briup.apps.ej.dao.AddressMapper;
 import com.briup.apps.ej.service.IAddressService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class AddressServiceImpl implements IAddressService {
                     .andProvinceLike("%"+address.getProvince()+"%");
         }
         if(address.getCity()!=null){
+
             example
                     .createCriteria()
                     .andCityLike("%"+address.getCity()+"%");

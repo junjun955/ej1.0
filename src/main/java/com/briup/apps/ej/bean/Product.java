@@ -144,8 +144,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 11:19:39 CST 2019
      */
-    public Double getPrice() {
-        return price;
+    public Double getPrice() { return price;
     }
 
     /**

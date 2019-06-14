@@ -1,7 +1,5 @@
 package com.briup.apps.ej.web.controller;
-
 import com.briup.apps.ej.bean.Address;
-import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.service.IAddressService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -10,7 +8,6 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;

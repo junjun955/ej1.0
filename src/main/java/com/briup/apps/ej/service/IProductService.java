@@ -5,13 +5,22 @@ import com.briup.apps.ej.bean.Product;
 import java.util.List;
 
 public interface IProductService {
-    List<Product> query(Product product);
 
     List<Product> findAll();
 
-    Product findById(long id);
+     List<Product> query(Product product);
+
+    Product findById( long id);
+
 
     void saveOrUpdate(Product product) throws Exception;
+
     void deleteById(long id) throws Exception ;
+
+    void batchDelete(long[] ids) throws Exception;
+
+
+
 }
+
 

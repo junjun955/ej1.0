@@ -653,6 +653,12 @@ public class ProductExample {
             addCriterion("category_id not between", value1, value2, "categoryId");
             return (Criteria) this;
         }
+
+        public void andPriceIn(String s) {
+        }
+
+        public void andCategoryIdIn(String s) {
+        }
     }
 
     /**

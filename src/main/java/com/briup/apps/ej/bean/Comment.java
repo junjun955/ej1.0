@@ -1,5 +1,8 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("顾客评论模型")
 public class Comment {
     /**
      *
