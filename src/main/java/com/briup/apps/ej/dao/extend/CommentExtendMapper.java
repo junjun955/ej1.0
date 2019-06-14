@@ -8,13 +8,9 @@ import java.util.List;
 
 public interface CommentExtendMapper {
     List<CommentExtend> query(
-            @Param("commentId") Long commentId,
-            @Param("commentTime") Long commentTime
+            @Param("orderId") Long orderId
     );
-
-
     List<CommentVM> queryBasic(
-            @Param("commentId") Long commentId,
-             @Param("commentTime") Long commentTime
+            @Param("orderId") Long orderId
     );
 }

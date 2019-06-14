@@ -1,4 +1,5 @@
 package com.briup.apps.ej.web.controller;
+import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.extend.CommentExtend;
 import com.briup.apps.ej.bean.vm.CommentVM;
@@ -7,6 +8,7 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,15 +26,15 @@ public class CommentController {
 
     @GetMapping("queryBasic")
     @ApiOperation("查询评论信息，返回列表数据")
-    public Message queryBasic(Long commentId,Long commentTime){
-        List<CommentVM> list = commentService.queryBasic(commentId,commentTime);
+    public Message queryBasic(Long orderId){
+        List<CommentExtend> list = commentService.queryBasic(orderId);
         return MessageUtil.success("success",list);
     }
 
     @GetMapping("query")
     @ApiOperation("查询评论信息，并且评论级联关键的属性")
-    public Message query(Long commentId,Long commentTime){
-        List<CommentExtend> list = commentService.query(commentId,commentTime);
+    public Message query(Long orderId){
+        List<CommentExtend> list = commentService.query(orderId);
         return MessageUtil.success("success",list);
     }
 
@@ -43,8 +45,13 @@ public class CommentController {
         List<Comment> list = commentService.findAll();
         return MessageUtil.success("success",list);
     }
-
-    @PostMapping("saveOrUpdate")
+    @ApiOperation("通过id查询")
+    @GetMapping("findById")
+    public Message findById(@ApiParam(value = "主键",required = true) @RequestParam(value = "id") long id) {
+        Comment  comment =  commentService.findById(id);
+        return MessageUtil.success("success", comment);
+    }
+        @PostMapping("saveOrUpdate")
     @ApiOperation("保存或者更新顾客信息")
     public Message saveOrUpdate(@Valid @ModelAttribute Comment comment) throws Exception{
         commentService.saveOrUpdate(comment);

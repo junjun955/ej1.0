@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.CommentExtendMapper">
+
+
+
+  <select id="query" resultMap="commentExtendResultMap">
+    select
+    c.id as c_id,
+    c.content,
+    c.comment_time,
+    c.order_Id,
+    o.id as o_id,
+    o.order_Time as o_orderTime,
+    o.total as o_total,
+    o.customer_Id as o_customerId,
+    o.waiter_Id as o_waiterId,
+    o.address_Id as o_addressId
+    from ej_order o ,ej_comment c
+    <where>
+     c.order_id = o.id
+      <if test="orderId!=null">
+        AND o.id = #{orderId}
+      </if>
+    </where>
+  </select>
+
+
+  <resultMap
+          id="commentExtendResultMap"
+          type="com.briup.apps.ej.bean.extend.CommentExtend">
+
+    <!--还有四个关联属性-->
+    <association property="order" javaType="com.briup.apps.ej.bean.Order">
+      <id column="o_id" jdbcType="BIGINT" property="id" />
+      <result column="o_orderTime" jdbcType="BIGINT" property="orderTime" />
+      <result column="o_total" jdbcType="DOUBLE" property="total" />
+      <result column="o_customerId" jdbcType="BIGINT" property="customerId" />
+      <result column="o_waiterId" jdbcType="BIGINT" property="waiterId" />
+      <result column="o_addressId" jdbcType="BIGINT" property="addressId" />
+
+
+    </association>
+  </resultMap>
+
+</mapper>

@@ -2,7 +2,6 @@ package com.briup.apps.ej.service.impl;
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.CommentExample;
 import com.briup.apps.ej.bean.extend.CommentExtend;
-import com.briup.apps.ej.bean.vm.CommentVM;
 import com.briup.apps.ej.dao.CommentMapper;
 import com.briup.apps.ej.dao.extend.CommentExtendMapper;
 import com.briup.apps.ej.service.ICommentService;
@@ -20,13 +19,13 @@ public class CommentServiceImpl implements ICommentService {
 
 
     @Override
-    public List<CommentVM> queryBasic(Long commentId, Long commentTime) {
-        return null;
+    public List<CommentExtend> queryBasic(Long orderId) {
+        return commentExtendMapper.query(orderId);
     }
 
     @Override
-    public List<CommentExtend> query(Long commentId, Long commentTime) {
-        return null;
+    public List<CommentExtend> query(Long orderId) {
+        return commentExtendMapper.query(orderId);
     }
 
     @Override
