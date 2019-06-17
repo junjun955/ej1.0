@@ -2,7 +2,10 @@ package com.briup.apps.ej.service.impl;
 
 import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.ProductExample;
+import com.briup.apps.ej.bean.extend.ProductExtend;
 import com.briup.apps.ej.dao.ProductMapper;
+import com.briup.apps.ej.dao.extend.ProductExtendMapper;
+
 import com.briup.apps.ej.service.IProductService;
 
 import org.springframework.stereotype.Service;
@@ -15,6 +18,23 @@ import java.util.List;
 public  class ProductServiceImpl implements IProductService {
     @Resource
     private ProductMapper productMapper;
+    @Resource
+    private ProductExtendMapper productExtendMapper;
+
+
+
+
+    @Override
+    public List<ProductExtend> queryBasic(Long categoryId) {
+        return productExtendMapper.query(categoryId);
+    }
+
+    @Override
+    public List<ProductExtend> query(Long categoryId) {
+
+        return productExtendMapper.query(categoryId);
+    }
+
 
     @Override
     public List<Product> query(Product product) {
@@ -56,7 +76,6 @@ public  class ProductServiceImpl implements IProductService {
         return productMapper.selectByExample(example);
 
     }
-
 
     @Override
     public List<Product> findAll() {
