@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service;
 
 
+import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.bean.vm.OrderAndOrderLineVM;
@@ -14,6 +15,7 @@ public interface IOrderService {
     List<OrderExtend> query(Long customerId,Long waiterId);
 
     List<Order> findAll();
+    Order findById(long id);
 
     void save(OrderAndOrderLineVM order) throws Exception;
 

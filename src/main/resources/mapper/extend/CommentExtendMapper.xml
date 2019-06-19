@@ -42,5 +42,6 @@
 
     </association>
   </resultMap>
+  <select id="queryBasic" resultType="com.briup.apps.ej.bean.vm.CommentVM"></select>
 
 </mapper>

@@ -1,8 +1,6 @@
 package com.briup.apps.ej.web.controller;
-import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.extend.CommentExtend;
-import com.briup.apps.ej.bean.vm.CommentVM;
 import com.briup.apps.ej.service.ICommentService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;

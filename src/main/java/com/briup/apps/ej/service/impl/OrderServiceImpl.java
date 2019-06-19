@@ -1,5 +1,6 @@
 package com.briup.apps.ej.service.impl;
 
+import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
 import com.briup.apps.ej.bean.Order_line;
@@ -36,6 +37,11 @@ public class OrderServiceImpl implements IOrderService {
         return orderExtendMapper.query(customerId,waiterId);
     }
 
+@Override
+public Order findById(long id) {
+    // 调用mapper层代码完成查询操作
+    return orderMapper.selectByPrimaryKey(id);
+}
     @Override
     public List<Order> findAll() {
         OrderExample example = new OrderExample();

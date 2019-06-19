@@ -14,8 +14,8 @@ public interface ICommentService {
 
     List<Comment> findAll();
 
-    Comment findById(long id);
 
+    Comment findById(long id);
     void saveOrUpdate(Comment comment) throws Exception ;
 
     void deleteById(long id) throws Exception ;

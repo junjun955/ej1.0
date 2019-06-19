@@ -6,6 +6,7 @@
         select
         o.id as o_id,
         o.total as total,
+        o.customer_id,
         o.order_time as orderTime,
         c.realname as customerName,
         w.realname as waiterName,
@@ -83,6 +84,7 @@
             <id column="c_id" jdbcType="BIGINT" property="id" />
             <result column="c_telephone" jdbcType="VARCHAR" property="telephone" />
             <result column="c_realname" jdbcType="VARCHAR" property="realname" />
+
         </association>
         <association property="waiter" javaType="com.briup.apps.ej.bean.Waiter">
             <id column="w_id" jdbcType="BIGINT" property="id" />
